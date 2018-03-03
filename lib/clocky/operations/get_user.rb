@@ -2,6 +2,7 @@
 
 require 'clocky/operation'
 require 'clocky/domain/user'
+require 'clocky/import'
 
 module Clocky
   module Operations
