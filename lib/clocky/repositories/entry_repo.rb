@@ -19,9 +19,9 @@ module Clocky
         aggregate(:user)
           .where(created_at: today)
           .to_a
-          .map { |entry| Persistence::Mappers::EntryMapper.new.call(entry) }
+          .map { |entry| Persistence::Mappers::EntryMapper.new.(entry) }
           .flatten
-          .map { |entry| Clocky::Today.new(entry) }
+          .map { |entry| Clocky::Today.(entry) }
       end
 
       private
