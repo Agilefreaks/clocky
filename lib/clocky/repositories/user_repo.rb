@@ -5,6 +5,8 @@ require 'clocky/repository'
 module Clocky
   module Repositories
     class UserRepo < Clocky::Repository[:users]
+      commands :create
+
       def by_email(email)
         users
           .where(email: email)
