@@ -19,7 +19,7 @@ module Clocky
             end
             m.failure do |errors|
               response.status = :bad_request
-              r.jsonapi 'errors', data: errors
+              r.jsonapi 'errors', data: p(errors)
             end
           end
         end
