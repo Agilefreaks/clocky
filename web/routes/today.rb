@@ -2,10 +2,12 @@
 
 require 'clocky/domain/today'
 
-class Clocky::Web
-  route "today" do |r|
-    r.post do
-      r.jsonapi 'today', { data: Clocky::Today.new }
+module Clocky
+  class Web
+    route 'today' do |r|
+      r.put do
+        r.jsonapi 'today', data: Clocky::Today.new
+      end
     end
   end
 end

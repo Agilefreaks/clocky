@@ -29,13 +29,11 @@ gem 'jsonapi-rb', '~> 0.5'
 
 group :development, :test do
   gem 'pry-byebug', platform: :mri
-  gem 'rubocop'
   gem 'rerun'
+  gem 'rubocop'
 end
 
 group :test do
-  gem 'capybara'
-  gem 'capybara-screenshot'
   gem 'database_cleaner'
   gem 'poltergeist'
   gem 'rom-factory', '~> 0.5'

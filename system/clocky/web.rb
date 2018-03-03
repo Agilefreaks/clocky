@@ -36,7 +36,7 @@ module Clocky
     # Request-specific options for dry-view context object
     def view_context_options
       {
-        url_helper: nil,
+        url_helper: nil
       }
     end
 
