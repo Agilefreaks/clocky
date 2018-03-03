@@ -5,7 +5,7 @@ require 'clocky/domain/today'
 module Clocky
   class Web
     route 'today' do |r|
-      r.put do
+      r.post do
         r.jsonapi 'today', data: Clocky::Today.new
       end
     end

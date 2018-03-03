@@ -26,6 +26,7 @@ gem 'dry-transaction', '~> 0.10'
 gem 'dry-types', '~> 0.12'
 gem 'dry-validation', '~> 0.11'
 gem 'jsonapi-rb', '~> 0.5'
+gem 'memoizable'
 
 group :development, :test do
   gem 'pry-byebug', platform: :mri

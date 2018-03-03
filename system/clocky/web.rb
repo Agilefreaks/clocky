@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
+require 'memoizable'
 require 'dry/web/roda/application'
 require_relative 'container'
 require 'clocky/domain/api_info'
 
 module Clocky
   class Web < Dry::Web::Roda::Application
+    include Memoizable
+
     configure do |config|
       config.container = Container
       config.routes = 'web/routes'
@@ -13,19 +16,23 @@ module Clocky
 
     opts[:root] = Pathname(__FILE__).join('../..').realpath.dirname
 
-    use Rack::Session::Cookie, key: 'clocky.session', secret: self['settings'].session_secret
-
     plugin :json_api
     plugin :json, content_type: 'application/vnd.api+json'
     plugin :error_handler
     plugin :multi_route
+    plugin :request_headers
 
     route do |r|
       r.multi_route
 
       r.root do
+        p(current_user)
         { jsonapi: { version: ApiInfo.new.version } }
       end
+    end
+
+    def current_user
+      self.class['transactions.get_current_user'].(request.headers['Authorization'])
     end
 
     error do |e|
@@ -41,5 +48,11 @@ module Clocky
     end
 
     load_routes!
+
+    private
+
+    def authorize
+      self.class['authorization'].(current_user, request)
+    end
   end
 end
