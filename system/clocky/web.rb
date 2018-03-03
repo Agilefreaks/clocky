@@ -36,7 +36,7 @@ module Clocky
     end
 
     def current_user
-      self.class['transactions.get_current_user'].(request.headers['Authorization']) do |result|
+      self.class['transactions.get_current_user'].call(request.headers['Authorization']) do |result|
         result.success do |user|
           user
         end
@@ -67,7 +67,5 @@ module Clocky
     end
 
     load_routes!
-
-    protected
   end
 end

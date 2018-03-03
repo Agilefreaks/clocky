@@ -13,4 +13,3 @@ module Clocky
     end
   end
 end
-

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # See https://github.com/rom-rb/rom-factory for more.
 
 Factory.define :entry do |f|
@@ -7,4 +8,3 @@ Factory.define :entry do |f|
   f.association(:user)
   f.timestamps
 end
-

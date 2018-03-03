@@ -12,7 +12,8 @@ module Clocky
 
         def call(params)
           today = Clocky::Today.new(entry_repo.create(
-            params[:params].merge(message: 'Uhu!', user_id: params[:current_user].id)))
+                                      params[:params].merge(message: 'Uhu!', user_id: params[:current_user].id)
+          ))
           Right(today)
         end
       end

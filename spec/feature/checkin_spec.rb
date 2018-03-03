@@ -8,7 +8,7 @@ RSpec.describe 'Checkin' do
   it 'can create' do
     Factory[:user, email: 'calin@agilefreaks.com']
     header 'Authorization', "Basic #{Base64.encode64('calin@agilefreaks.com')}"
-    post '/today', { data: { type: 'today' } }, { 'CONTENT_TYPE': 'application/vnd.api+json' }
+    post '/today', { data: { type: 'start' } }, 'CONTENT_TYPE': 'application/vnd.api+json'
 
     expect(response['data']['attributes']['message']).to eq('Uhu!')
   end

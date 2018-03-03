@@ -9,11 +9,10 @@ module Clocky
       include Import['repositories.user_repo']
 
       def call(email)
-        user = Clocky::User.new(user_repo.by_email(email))
+        user = user_repo.by_email(email)
 
-        user ? Right(user) : Left('None')
+        user ? Right(Clocky::User.new(user)) : Left('None')
       end
     end
   end
 end
-

@@ -9,15 +9,15 @@ RSpec.describe Clocky::Operations::GetUser do
   let(:get_user) { Clocky::Operations::GetUser.new(user_repo: repo) }
 
   it 'will return the user when it finds one' do
-    user = Clocky::User.new(email: 'doru@haterul.com')
+    user = Clocky::User.new(email: 'doru@haterul.com', id: 42)
     allow(repo).to receive(:by_email).with('doru@haterul.com').and_return(user)
 
-    expect(get_user.('doru@haterul.com').value!).to be(user)
+    expect(get_user.call('doru@haterul.com').value!).to be(user)
   end
 
   it 'will fail when it does not find a user' do
     allow(repo).to receive(:by_email).with('doru@haterul.com').and_return(nil)
 
-    expect(get_user.('doru@haterul.com').failure).to be_truthy
+    expect(get_user.call('doru@haterul.com').failure).to be_truthy
   end
 end

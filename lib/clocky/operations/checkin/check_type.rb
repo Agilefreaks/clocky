@@ -16,9 +16,11 @@ module Clocky
 
           entry = entry_repo.for_today_by_type_and_user(user.id, type)
 
-          entry ?
-            Left([Clocky::Error.new({ title: 'type', detail: "An entry with #{type} already exists for this user" })])
-            : Right(params)
+          if entry
+            Left([Clocky::Error.new(title: 'type', detail: "An entry with #{type} already exists for this user")])
+          else
+            Right(params)
+          end
         end
       end
     end

@@ -8,6 +8,6 @@ RSpec.describe Clocky::Operations::ParseEmail do
 
   it 'will parse the email from a base 64 digest' do
     header = "Base #{Base64.encode64('costel@manelistul.com')}"
-    expect(parse_email.(header).value!).to eq('costel@manelistul.com')
+    expect(parse_email.call(header).value!).to eq('costel@manelistul.com')
   end
 end

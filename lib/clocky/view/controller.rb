@@ -27,6 +27,10 @@ module Clocky
         self.class.config.klass
       end
 
+      def include
+        self.class.config.include
+      end
+
       def expose
         self.class.config.expose
       end
@@ -34,6 +38,7 @@ module Clocky
       def call(options)
         renderer.render(options[:data],
                         class: klass,
+                        include: include,
                         expose: expose.merge(url_helpers: options[:context].url_helpers))
       end
     end

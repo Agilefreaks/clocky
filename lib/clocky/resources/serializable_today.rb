@@ -13,6 +13,8 @@ module Clocky
         @object.time
       end
 
+      belongs_to :user
+
       link :self do
         @url_helpers.checkin_url
       end
