@@ -2,17 +2,33 @@
 
 # auto_register: false
 
-require 'slim'
-require 'dry/view/controller'
 require 'clocky/container'
 
 module Clocky
   module View
-    class Controller < Dry::View::Controller
+    class Controller
+      extend Dry::Configurable
+
+      setting :renderer
+      setting :klass
+      setting :include
+      setting :fields
+      setting :expose
+
       configure do |config|
-        config.paths = [Container.root.join('web/templates')]
-        config.context = Container['view.context']
-        config.layout = 'application'
+        config.renderer = Container['jsonapi.renderer']
+      end
+
+      def renderer
+        self.class.config.renderer
+      end
+
+      def klass
+        self.class.config.klass
+      end
+
+      def call(options)
+        renderer.render(options[:data], class: klass)
       end
     end
   end

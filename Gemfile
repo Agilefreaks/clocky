@@ -12,7 +12,6 @@ gem 'puma'
 gem 'rack_csrf'
 
 gem 'rack', '>= 2.0'
-gem 'rerun'
 
 # Database persistence
 gem 'pg'
@@ -26,12 +25,12 @@ gem 'dry-struct', '~> 0.3'
 gem 'dry-transaction', '~> 0.10'
 gem 'dry-types', '~> 0.12'
 gem 'dry-validation', '~> 0.11'
-gem 'dry-view', '~> 0.4'
-gem 'slim'
+gem 'jsonapi-rb', '~> 0.5'
 
 group :development, :test do
   gem 'pry-byebug', platform: :mri
   gem 'rubocop'
+  gem 'rerun'
 end
 
 group :test do

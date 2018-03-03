@@ -2,6 +2,7 @@
 
 require 'dry/web/roda/application'
 require_relative 'container'
+require 'clocky/domain/api_info'
 
 module Clocky
   class Web < Dry::Web::Roda::Application
@@ -14,18 +15,16 @@ module Clocky
 
     use Rack::Session::Cookie, key: 'clocky.session', secret: self['settings'].session_secret
 
-    plugin :csrf, raise: true
-    plugin :dry_view
+    plugin :json_api
+    plugin :json, content_type: 'application/vnd.api+json'
     plugin :error_handler
-    plugin :flash
     plugin :multi_route
 
     route do |r|
-      # Enable this after writing your first web/routes/ file
-      # r.multi_route
+      r.multi_route
 
       r.root do
-        r.view 'welcome'
+        { jsonapi: { version: ApiInfo.new.version } }
       end
     end
 
@@ -37,10 +36,7 @@ module Clocky
     # Request-specific options for dry-view context object
     def view_context_options
       {
-        flash:        flash,
-        csrf_token:   Rack::Csrf.token(request.env),
-        csrf_metatag: Rack::Csrf.metatag(request.env),
-        csrf_tag:     Rack::Csrf.tag(request.env)
+        url_helper: nil,
       }
     end
 
