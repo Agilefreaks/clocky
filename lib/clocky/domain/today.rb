@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'types'
+require 'clocky/domain/user'
 
 module Clocky
   class Today < Dry::Struct::Value
