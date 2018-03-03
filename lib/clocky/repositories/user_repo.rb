@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'clocky/repository'
-require 'clocky/domain/user'
 
 module Clocky
   module Repositories
@@ -10,8 +9,7 @@ module Clocky
         users
           .where(email: email)
           .map_with(:user_mapper)
-          .map_to(Clocky::User)
-          .one!
+          .one
       end
     end
   end

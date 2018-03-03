@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-module Clocky
-  class Today
-    attr_reader :id
+require 'types'
 
-    def initialize
-      @id = 42
-    end
+module Clocky
+  class Today < Dry::Struct::Value
+    attribute :id, Types::Strict::Int
+    attribute :type, Types::Strict::String
+    attribute :time, Types::Strict::Time
+    attribute :message, Types::Strict::String.default('Uhu!')
   end
 end

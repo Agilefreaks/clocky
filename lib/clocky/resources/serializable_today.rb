@@ -5,6 +5,14 @@ module Clocky
     class SerializableToday < JSONAPI::Serializable::Resource
       type :today
 
+      attribute :message do
+        @object.message
+      end
+
+      attribute :time do
+        @object.time
+      end
+
       # link :checkin do
       #   @url_helper.checkin_url
       # end

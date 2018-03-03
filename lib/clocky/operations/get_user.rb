@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'clocky/operation'
-require 'clocky/repositories/user_repo'
+require 'clocky/domain/user'
 
 module Clocky
   module Operations
@@ -9,7 +9,9 @@ module Clocky
       include Import['repositories.user_repo']
 
       def call(email)
-        Right(user_repo.by_email(email))
+        user = Clocky::User.new(user_repo.by_email(email))
+
+        user ? Right(user) : Left('None')
       end
     end
   end

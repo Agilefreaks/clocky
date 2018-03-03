@@ -27,6 +27,7 @@ gem 'dry-types', '~> 0.12'
 gem 'dry-validation', '~> 0.11'
 gem 'jsonapi-rb', '~> 0.5'
 gem 'memoizable'
+gem 'roda-symbolized_params'
 
 group :development, :test do
   gem 'pry-byebug', platform: :mri

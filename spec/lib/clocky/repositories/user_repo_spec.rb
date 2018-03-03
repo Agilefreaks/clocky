@@ -3,7 +3,7 @@
 require 'db_spec_helper'
 require 'clocky/repositories/user_repo'
 
-RSpec.describe Clocky::Repository::UserRepo do
+RSpec.describe Clocky::Repositories::UserRepo do
   let(:repo) { Clocky::Container['repositories.user_repo'] }
 
   it 'get a user by email' do

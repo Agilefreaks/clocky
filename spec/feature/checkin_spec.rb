@@ -2,12 +2,14 @@
 
 require 'web_spec_helper'
 require 'json'
+require 'base64'
 
 RSpec.describe 'Checkin' do
-  it 'can create' do
-    header 'Authorization', 'Basic 42'
-    post '/today', { data: { type: 'today' } }.to_json, { 'CONTENT_TYPE': 'application/vnd.api+json' }
+  it 'can create', focus: true do
+    Factory[:user, email: 'calin@agilefreaks.com']
+    header 'Authorization', "Basic #{Base64.encode64('calin@agilefreaks.com')}"
+    post '/today', { data: { type: 'today' } }, { 'CONTENT_TYPE': 'application/vnd.api+json' }
 
-    expect(true).to be_truthy
+    expect(response['data']['attributes']['message']).to eq('Uhu!')
   end
 end
