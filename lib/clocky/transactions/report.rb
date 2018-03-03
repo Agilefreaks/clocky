@@ -7,6 +7,7 @@ module Clocky
   module Transactions
     class Report < Transaction
       include Import['repositories.entry_repo']
+
       step :process
 
       def process(_input)
