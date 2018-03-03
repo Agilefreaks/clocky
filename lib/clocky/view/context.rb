@@ -13,8 +13,8 @@ module Clocky
         self.class.new(attrs.merge(new_attrs))
       end
 
-      def url_helper
-        self[:url_helper]
+      def url_helpers
+        self[:url_helpers]
       end
 
       private

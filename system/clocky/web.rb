@@ -4,6 +4,7 @@ require 'memoizable'
 require 'dry/web/roda/application'
 require_relative 'container'
 require 'clocky/domain/api_info'
+require 'clocky/url_helpers'
 
 module Clocky
   class Web < Dry::Web::Roda::Application
@@ -61,7 +62,7 @@ module Clocky
     # Request-specific options for dry-view context object
     def view_context_options
       {
-        url_helper: nil
+        url_helpers: Clocky::UrlHelpers.new(env)
       }
     end
 

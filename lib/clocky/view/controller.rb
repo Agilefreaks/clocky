@@ -13,7 +13,7 @@ module Clocky
       setting :klass
       setting :include
       setting :fields
-      setting :expose
+      setting :expose, {}
 
       configure do |config|
         config.renderer = Container['jsonapi.renderer']
@@ -27,8 +27,14 @@ module Clocky
         self.class.config.klass
       end
 
+      def expose
+        self.class.config.expose
+      end
+
       def call(options)
-        renderer.render(options[:data], class: klass)
+        renderer.render(options[:data],
+                        class: klass,
+                        expose: expose.merge(url_helpers: options[:context].url_helpers))
       end
     end
   end

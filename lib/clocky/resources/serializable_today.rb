@@ -13,13 +13,13 @@ module Clocky
         @object.time
       end
 
-      # link :checkin do
-      #   @url_helper.checkin_url
-      # end
-      #
-      # link :checkout do
-      #   @url_helper.checkout_url
-      # end
+      link :self do
+        @url_helpers.checkin_url
+      end
+
+      link :related do
+        @url_helpers.entry_url(@object.id)
+      end
     end
   end
 end
